@@ -93,13 +93,13 @@ var getXmlFromNextbus = function(stopId, callback) {
     });
 };
 
-function readContent(callback) {
+/*function readContent(callback) {
     fs.readFile("/var/task/DB.xml", "utf8", function (err, content) {
         console.log(content);
         if (err) return callback(err);
         callback(null, content);
     });
-};
+};*/
 
 var handleNextBusRequest = function(intent, session, response) {
     var myData = [], source, destination, srcStopId, destStopId;
