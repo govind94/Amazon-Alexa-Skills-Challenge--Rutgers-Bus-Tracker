@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<stop name="Scott Hall" id="1055"></stop>
+	<stop name="Train Station" id="1010"></stop>
+	<stop name="Paterson Street" id="1067"></stop>
+	<stop name="Rockoff Hall" id="1043"></stop>
+	<stop name="Public Safety Building South" id="1044"></stop>
+	<stop name="Red Oak Lane" id="1011"></stop>
+	<stop name="Lipman Hall" id="1047"></stop>
+	<stop name="Food Sciences Building" id="1012"></stop>
+	<stop name="Biel Road" id="1048"></stop>
+	<stop name="Henderson" id="1050"></stop>
+	<stop name="Katzenbach" id="1014"></stop>
+	<stop name="Gibbons" id="1051"></stop>
+	<stop name="College Hall" id="1052"></stop>
+	<stop name="Public Safety Building North" id="1016"></stop>
+	<stop name="Liberty Street" id="1053"></stop>
+	<stop name="Zimmerli Arts Museum" id="1017"></stop>
+	<stop name="Student Activities Center" id="1001"></stop>
+	<stop name="Rutgers Student Center" id="1062"></stop>
+	<stop name="Bravo Supermarket" id="1037"></stop>
+	<stop name="Hill Center North" id="1066"></stop>
+	<stop name="Allison Road Classrooms" id="1036"></stop>
+	<stop name="Livingston Plaza" id="1028"></stop>
+	<stop name="Livingston Student Center" id="1029"></stop>
+	<stop name="Visitor Center" id="1071"></stop>
+	<stop name="Stadium" id="1024"></stop>
+	<stop name="Werblin Back Entrance" id="1003"></stop>
+	<stop name="Hill Center South" id="1004"></stop>
+	<stop name="Science Building" id="1005"></stop>
+	<stop name="Library of Science" id="1006"></stop>
+	<stop name="Busch Suites" id="1007"></stop>
+	<stop name="Busch Campus Center" id="1008"></stop>
+	<stop name="Buell Apartments" id="1009"></stop>
+	<stop name="Werblin Main Entrance" id="1022"></stop>
+	<stop name="Quads" id="1030"></stop>
+	<stop name="Davidson Hall" id="1023"></stop>
+	<stop name="Nursing School" id="1070"></stop>
+	<stop name="Colony House" id="1042"></stop>
+</body>
