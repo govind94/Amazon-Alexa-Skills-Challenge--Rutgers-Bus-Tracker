@@ -1,0 +1,21 @@
+{
+  "intents": [
+    {
+      "intent": "GetBusesByStopIntent",
+      "slots": [
+      	{
+      		"name": "src",
+      		"type": "STOP"
+    	},
+        {
+          	"name": "dest",
+          	"type": "STOP"
+        }
+      ]
+    },
+    {
+      "intent": "HelpIntent",
+      "slots": []
+    }
+  ]
+}
