@@ -1,142 +1,129 @@
 var http       = require('http'),
     AlexaSkill = require('./AlexaSkill'),
+    XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     fs = require('fs'),
-    APP_ID     = 'amzn1.ask.skill.04608c63-d9a3-4faf-956d-8cd09ee7ce70';  
+    xml2js = require('xml2js'),
+    APP_ID     = 'amzn1.ask.skill.38e0b38e-1e18-4ac7-8a69-aa883b92ab32';
 
-var url = function(stopId) {
-    return 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=rutgers&stopId=' + stopId;
-};
-
-var convertToString = function(data) {
-    var string = "";
-    var n = data.length;
-    for (var i = 0; i < n; i++) {
-        string += data[i]["route"] + " in " + data[i]["minutes"] + (data[i]["minutes"] == 1 ? " minute" : " minutes");
-        if (i < (n - 1)) {
-            string += ", ";
-            if (i == (n - 2)) {
-                string += "and ";
-            }
-        } 
-        else string += ".";
-    }
-    return string;
-}
-
-var getCorrectBus = function(stopId, data1, callback) {
-    http.get(url(stopId), function(res) {
-        var nextBusResponseString = '';
+function httpGet(url, callback) {
+    http.get(url, function(res) {
+        var body = '';
         res.on('data', function(data) {
-            nextBusResponseString += data;
+            body += data;
         });
         res.on('end', function() {
-            var data = [];
-            var parseString = require('xml2js').parseString;
-            try {
-                var nextBusResponseObject = parseString(nextBusResponseString, function (err, result) {
-                    for (var i = 0; i < result.body.predictions.length; i++) {
-                        var currPredictions = result.body.predictions[i];
-                        if (data1.indexOf(currPredictions.$.routeTag) > -1) {
-                            for (var j = 0; j < currPredictions.direction.length; j++) {
-                                for (var k = 0; k < currPredictions.direction[j].prediction.length; k++) {
-                                    var dict = {};
-                                    dict["route"] = currPredictions.$.routeTitle;
-                                    dict["minutes"] = Number(currPredictions.direction[j].prediction[k].$.minutes);
-                                    data[data.length] = dict;
-                                }
+            callback(body);
+        });
+    });
+};
+
+var getSchedule = function(data) {
+    var timings = "";
+    var n = data.length;
+    for (var i = 0; i < n; i++) {
+        timings += data[i]["routeTitle"] + " in " + data[i]["timeMinutes"] + (data[i]["timeMinutes"] == 1 ? " minute" : " minutes");
+        if (i < (n - 1)) {
+            timings += ", ";
+            if (i == (n - 2)) {
+                timings += "and ";
+            }
+        } 
+        else timings += ".";
+    }
+    return timings;
+};
+
+var getBusList = function(stopId, buses, callback) {
+    var url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=rutgers&stopId='+stopId;
+    httpGet(url, function(res) {
+        var data = [];
+        var parseString = require('xml2js').parseString;
+        try {
+            var response = parseString(res, function (err, result) {
+                for (var i = 0; i < result.body.predictions.length; i++) {
+                    var predictions = result.body.predictions[i];
+                    if (buses.indexOf(predictions.$.routeTag) > -1) {
+                        for (var j = 0; j < predictions.direction.length; j++) {
+                            for (var k = 0; k < predictions.direction[j].prediction.length; k++) {
+                                var schedule = {};
+                                schedule["routeTitle"] = predictions.$.routeTitle;
+                                schedule["timeMinutes"] = Number(predictions.direction[j].prediction[k].$.minutes);
+                                data[data.length] = schedule;
                             }
                         }
                     }
-                    data.sort(function(a, b) {
-                        if (a["minutes"] < b["minutes"]) return -1;
-                        if (a["minutes"] > b["minutes"]) return 1;
-                        return 0;
-                    });
+                }
+                data.sort(function(a, b) {
+                    if (a["timeMinutes"] < b["timeMinutes"]) return -1;
+                    if (a["timeMinutes"] > b["timeMinutes"]) return 1;
+                    return 0;
                 });
-            }
-            catch(e) {
-                console.log("Error1: " + e);
-                callback(1, convertToString(data));
-            }
-            callback(null, convertToString(data));
-        });
-    }).on('error', function(e) {
-        console.log('Error: ' + e);
+            });
+        }
+        catch(e) {
+            console.log("Error: " + e);
+            callback(1, getSchedule(data));
+        }
+        callback(null, getSchedule(data));
     });
 };
 
 var getXmlFromNextbus = function(stopId, callback) {
-    http.get(url(stopId), function(res) {
-        var nextBusResponseString = '';
-        res.on('data', function(data) {
-            nextBusResponseString += data;
-        });
-        res.on('end', function() {
-            var data = [];
-            var parseString = require('xml2js').parseString;
-            try {
-                var nextBusResponseObject = parseString(nextBusResponseString, function (err, result) {
-                    for (var i = 0; i < result.body.predictions.length; i++) {
-                        var currPredictions = result.body.predictions[i];
-                        if (currPredictions.direction != undefined) data[data.length] = currPredictions.$.routeTag;
-                    }
-                });
-            }
-            catch(e) {
-                console.log("Error2: " + e); 
-                callback(1, data); 
-            }
-            callback(null, data);
-        });
-    }).on('error', function(e) {
-        console.log('Error: ' + e);
+    var url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=rutgers&stopId='+stopId;
+    httpGet(url, function(res) {
+        var data = [];
+        var parseString = require('xml2js').parseString;
+        try {
+            var response = parseString(res, function (err, result) {
+                for (var i = 0; i < result.body.predictions.length; i++) {
+                    var predictions = result.body.predictions[i];
+                    if (predictions.direction !== undefined) data[data.length] = predictions.$.routeTag;
+                }
+            });
+        }
+        catch(e) {
+            console.log("Error: " + e); 
+            callback(1, data); 
+        }
+        callback(null, data);
     });
 };
 
-/*function readContent(callback) {
-    fs.readFile("/var/task/DB.xml", "utf8", function (err, content) {
-        console.log(content);
-        if (err) return callback(err);
-        callback(null, content);
-    });
-};*/
-
-var handleNextBusRequest = function(intent, session, response) {
-    var myData = [], source, destination, srcStopId, destStopId;
-    var xml2js = require('xml2js');
+var handleRequest = function(intent, session, response) {
+    var buses = [], source, destination, sourceStopId, destinationStopId;
     var parser = new xml2js.Parser();
     fs.readFile("/var/task/DB.xml", function (err, content) {
         parser.parseString(content, function(err, result) {
             for (var i = 0; i < result.body.stop.length; i++) {
-                var currPredictions = result.body.stop[i];
-                var areEqual = (currPredictions.$.name).toUpperCase() === (intent.slots.src.value).toUpperCase();
-                if (areEqual) srcStopId = currPredictions.$.id;
-                areEqual = (currPredictions.$.name).toUpperCase() === (intent.slots.dest.value).toUpperCase();
-                if (areEqual) destStopId = currPredictions.$.id;
+                var busStop = result.body.stop[i];
+                var isEqual = (busStop.$.name).toUpperCase() === (intent.slots.source.value).toUpperCase();
+                if (isEqual) sourceStopId = busStop.$.id;
+                isEqual = (busStop.$.name).toUpperCase() === (intent.slots.destination.value).toUpperCase();
+                if (isEqual) destinationStopId = busStop.$.id;
             }
-            getXmlFromNextbus(srcStopId, function(err, srcData) {
-                if (err) console.log("Error1");
-                else source = srcData;
+            getXmlFromNextbus(sourceStopId, function(err, sourceStops) {
+                if (err) console.log("Error!");
+                else source = sourceStops;
                 
-                getXmlFromNextbus(destStopId, function(err, destData) {
-                    if (err) console.log("Error2");
-                    else destination = destData;
+                getXmlFromNextbus(destinationStopId, function(err, destinationStops) {
+                    if (err) console.log("Error!");
+                    else destination = destinationStops;
                     
                     for (var x in source) {
                         for (var y in destination) {
-                            if (source[x] === destination[y]) myData[myData.length] = source[x];
+                            if (source[x] === destination[y]) buses[buses.length] = source[x];
                         }
                     }
                     
-                    getCorrectBus(srcStopId, myData, function(err, data) {
+                    getBusList(sourceStopId, buses, function(err, data) {
                         var speechOutput;
-                        if (err) speechOutput = "Sorry, the Next Bus service is experiencing a problem. Please try again later";
+                        if (err) speechOutput = "Sorry! Rutgers Bus Tracker is experiencing a problem. Please try again later";
                         else {
                             if (data) speechOutput = "The next buses are " + data;
-                            else speechOutput = "There are no direct buses from " + intent.slots.src.value + " to " + intent.slots.dest.value;
+                            else speechOutput = "There are no direct buses from " + intent.slots.source.value + " to " + intent.slots.destination.value;
                         }
                         
-                        heading = "BusTimes";
+                        var heading = "Bus Schedules";
                         response.tellWithCard(speechOutput, heading, speechOutput);
                     });
                 });
@@ -145,31 +132,31 @@ var handleNextBusRequest = function(intent, session, response) {
     });
 };
 
-var NextBus1 = function() {
+var RutgersBusTracker = function() {
     AlexaSkill.call(this, APP_ID);
 };
 
-NextBus1.prototype = Object.create(AlexaSkill.prototype);
-NextBus1.prototype.constructor = NextBus1;
+RutgersBusTracker.prototype = Object.create(AlexaSkill.prototype);
+RutgersBusTracker.prototype.constructor = RutgersBusTracker;
 
-NextBus1.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
-    var output = 'Welcome to Next Bus. ' + 'Say the name of the source bus stop and the destination bus stop to get bus schedules.';
+RutgersBusTracker.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
+    var output = 'Welcome to Rutgers Bus Tracker. ' + 'Say the name of the source bus stop and the destination bus stop to get bus schedules.';
     var reprompt = 'Which bus stops do you want to find more about?';
     response.ask(output, reprompt);
 };
 
-NextBus1.prototype.intentHandlers = {
+RutgersBusTracker.prototype.intentHandlers = {
     GetBusesByStopIntent: function(intent, session, response) {
-        handleNextBusRequest(intent, session, response);
+        handleRequest(intent, session, response);
     },
     
     HelpIntent: function(intent, session, response) {
-        var speechOutput = 'Request buses from a particular stop to a particular stop.';
+        var speechOutput = 'Request bus timings from one stop to another inside the University campus.';
         response.ask(speechOutput);
     }
 };
 
 exports.handler = function(event, context) {
-    var skill = new NextBus1();
+    var skill = new RutgersBusTracker();
     skill.execute(event, context);
 };
