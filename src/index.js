@@ -1,6 +1,5 @@
 var http       = require('http'),
     AlexaSkill = require('./AlexaSkill'),
-    XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     fs = require('fs'),
     xml2js = require('xml2js'),
     APP_ID     = 'amzn1.ask.skill.38e0b38e-1e18-4ac7-8a69-aa883b92ab32';
