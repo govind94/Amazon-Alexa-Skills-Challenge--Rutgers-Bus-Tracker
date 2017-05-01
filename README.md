@@ -6,5 +6,5 @@ The user can ask Alexa for bus schedules from point A to point B in Rutgers Univ
 https://www.youtube.com/watch?v=MyqoH7e787w
 
 
-[!(http://img.youtube.com/vi/MyqoH7e787w/0.jpg)](http://www.youtube.com/watch?v=MyqoH7e787w)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/MyqoH7e787w/0.jpg)](http://www.youtube.com/watch?v=MyqoH7e787w)
 
