@@ -1,24 +1,7 @@
-GetBusesByStopIntent get next buses from {src} to {dest}
-GetBusesByStopIntent get next bus from {src} to {dest}
-GetBusesByStopIntent find next buses from {src} to {dest}
-GetBusesByStopIntent find next bus from {src} to {dest}
-GetBusesByStopIntent next buses through {src} to {dest}
-GetBusesByStopIntent next bus through {src} to {dest}
-
-HelpIntent help
-HelpIntent help me
-HelpIntent what can I ask you
-HelpIntent get help
-HelpIntent to help
-HelpIntent to help me
-HelpIntent what commands can I ask
-HelpIntent what commands can I say
-HelpIntent what can I do
-HelpIntent what can I use this for
-HelpIntent what questions can I ask
-HelpIntent what can you do
-HelpIntent what do you do
-HelpIntent how do I use you
-HelpIntent how can I use you
-HelpIntent what can you tell me
-HelpIntent how do i find a bus
+GetBusesByStopIntent get next bus from {source} to {destination}
+GetBusesByStopIntent get next bus to {destination} from {source}
+GetBusesByStopIntent find next bus from {source} to {destination}
+GetBusesByStopIntent find next bus to {destination} from {source}
+GetBusesByStopIntent next bus through {source} to {destination}
+GetBusesByStopIntent when is the next bus from {source} to {destination}
+GetBusesByStopIntent when is the next bus to {destination} from {source}
