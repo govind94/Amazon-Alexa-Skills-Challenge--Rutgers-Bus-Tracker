@@ -1,21 +1,26 @@
 {
   "intents": [
     {
-      "intent": "GetBusesByStopIntent",
       "slots": [
-      	{
-      		"name": "src",
-      		"type": "STOP"
-    	},
         {
-          	"name": "dest",
-          	"type": "STOP"
+          "name": "source",
+          "type": "STOP"
+        },
+        {
+          "name": "destination",
+          "type": "STOP"
         }
-      ]
+      ],
+      "intent": "GetBusesByStopIntent"
     },
     {
-      "intent": "HelpIntent",
-      "slots": []
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
     }
   ]
 }
