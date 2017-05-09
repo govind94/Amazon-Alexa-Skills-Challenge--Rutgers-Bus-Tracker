@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <body>
-	<stop name="Scott Hall" id="1055"></stop>
-	<stop name="Train Station" id="1010"></stop>
-	<stop name="Paterson Street" id="1067"></stop>
-	<stop name="Rockoff Hall" id="1043"></stop>
-	<stop name="Public Safety Building South" id="1044"></stop>
-	<stop name="Red Oak Lane" id="1011"></stop>
-	<stop name="Lipman Hall" id="1047"></stop>
-	<stop name="Food Sciences Building" id="1012"></stop>
-	<stop name="Biel Road" id="1048"></stop>
-	<stop name="Henderson" id="1050"></stop>
-	<stop name="Katzenbach" id="1014"></stop>
-	<stop name="Gibbons" id="1051"></stop>
-	<stop name="College Hall" id="1052"></stop>
-	<stop name="Public Safety Building North" id="1016"></stop>
-	<stop name="Liberty Street" id="1053"></stop>
-	<stop name="Zimmerli Arts Museum" id="1017"></stop>
-	<stop name="Student Activities Center" id="1001"></stop>
-	<stop name="Rutgers Student Center" id="1062"></stop>
-	<stop name="Bravo Supermarket" id="1037"></stop>
-	<stop name="Hill Center North" id="1066"></stop>
-	<stop name="Allison Road Classrooms" id="1036"></stop>
-	<stop name="Livingston Plaza" id="1028"></stop>
-	<stop name="Livingston Student Center" id="1029"></stop>
-	<stop name="Visitor Center" id="1071"></stop>
-	<stop name="Stadium" id="1024"></stop>
-	<stop name="Werblin Back Entrance" id="1003"></stop>
-	<stop name="Hill Center South" id="1004"></stop>
-	<stop name="Science Building" id="1005"></stop>
-	<stop name="Library of Science" id="1006"></stop>
-	<stop name="Busch Suites" id="1007"></stop>
-	<stop name="Busch Campus Center" id="1008"></stop>
-	<stop name="Buell Apartments" id="1009"></stop>
-	<stop name="Werblin Main Entrance" id="1022"></stop>
-	<stop name="Quads" id="1030"></stop>
-	<stop name="Davidson Hall" id="1023"></stop>
-	<stop name="Nursing School" id="1070"></stop>
-	<stop name="Colony House" id="1042"></stop>
+	<stop name="Scott Hall" id="1055" lat="40.4995732" lng="-74.4482433"></stop>
+	<stop name="Scott Hole" id="1055" lat="40.4995732" lng="-74.4482433"></stop>
+	<stop name="Scott Whole" id="1055" lat="40.4995732" lng="-74.4482433"></stop>
+	<stop name="Scott Home" id="1055" lat="40.4995732" lng="-74.4482433"></stop>
+	<stop name="Scout Home" id="1055" lat="40.4995732" lng="-74.4482433"></stop>
+	<stop name="Train Station" id="1010" lat="40.4981979" lng="-74.445116"></stop>
+	<stop name="Paterson Street" id="1067" lat="40.495062" lng="-74.443997"></stop>
+	<stop name="Rockoff Hall" id="1043" lat="40.491856" lng="-74.4430933"></stop>
+	<stop name="Public Safety Building South" id="1044" lat="40.487053" lng="-74.4398722"></stop>
+	<stop name="Red Oak Lane" id="1011" lat="40.48299" lng="-74.43754"></stop>
+	<stop name="Lipman Hall" id="1047" lat="40.4812942" lng="-74.4362659"></stop>
+	<stop name="Food Sciences Building" id="1012" lat="40.47891" lng="-74.43571"></stop>
+	<stop name="Biel Road" id="1048" lat="40.4799995" lng="-74.4325226"></stop>
+	<stop name="Henderson" id="1050" lat="40.4809499" lng="-74.4287199"></stop>
+	<stop name="Katzenbach" id="1014" lat="40.48304" lng="-74.4315999"></stop>
+	<stop name="Gibbons" id="1051" lat="40.48523" lng="-74.43194"></stop>
+	<stop name="College Hall" id="1052" lat="40.4855087" lng="-74.4371977"></stop>
+	<stop name="College Hole" id="1052" lat="40.4855087" lng="-74.4371977"></stop>
+	<stop name="College Whole" id="1052" lat="40.4855087" lng="-74.4371977"></stop>
+	<stop name="Public Safety Building North" id="1016" lat="40.4876259" lng="-74.4402073"></stop>
+	<stop name="Liberty Street" id="1053" lat="40.4932471" lng="-74.4433992"></stop>
+	<stop name="Zimmerli Arts Museum" id="1017" lat="40.4997074" lng="-74.4450693"></stop>
+	<stop name="Student Activities Center" id="1001" lat="40.5040199" lng="-74.4490599"></stop>
+	<stop name="Student Activity Center" id="1001" lat="40.5040199" lng="-74.4490599"></stop>
+	<stop name="Rutgers Student Center" id="1062" lat="40.50342" lng="-74.45215"></stop>
+	<stop name="Bravo Supermarket" id="1037" lat="40.49138" lng="-74.44264"></stop>
+	<stop name="Hill Center North" id="1004" lat="40.52194" lng="-74.46325"></stop>
+	<stop name="Allison Road Classrooms" id="1036" lat="40.5236115" lng="-74.4651274"></stop>
+	<stop name="Livingston Plaza" id="1028" lat="40.5251062" lng="-74.4385837"></stop>
+	<stop name="Livingston Student Center" id="1029" lat="40.5243131" lng="-74.4363968"></stop>
+	<stop name="Visitor Center" id="1071" lat="40.51514" lng="-74.4619198"></stop>
+	<stop name="Stadium" id="1024" lat="40.5144199" lng="-74.46629"></stop>
+	<stop name="Werblin Back Entrance" id="1003" lat="40.5186799" lng="-74.4614699"></stop>
+	<stop name="Hill Center South" id="1066" lat="40.5219009" lng="-74.4632822"></stop>
+	<stop name="Science Building" id="1005" lat="40.5239347" lng="-74.4642238"></stop>
+	<stop name="Library of Science" id="1006" lat="40.5263" lng="-74.46617"></stop>
+	<stop name="Busch Suites" id="1007" lat="40.52583" lng="-74.45872"></stop>
+	<stop name="Busch Campus Center" id="1008" lat="40.5236" lng="-74.45806"></stop>
+	<stop name="Buell Apartments" id="1009" lat="40.5218065" lng="-74.4567012"></stop>
+	<stop name="Werblin Main Entrance" id="1022" lat="40.5186373" lng="-74.4598542"></stop>
+	<stop name="Quads" id="1030" lat="40.5198612" lng="-74.4335688"></stop>
+	<stop name="Davidson Hall" id="1023" lat="40.5258793" lng="-74.4586278"></stop>
+	<stop name="Nursing School" id="1070" lat="40.494289" lng="-74.449676"></stop>
+	<stop name="Colony House" id="1042" lat="40.50617" lng="-74.46223"></stop>
 </body>
