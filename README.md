@@ -1,4 +1,4 @@
-# Amazon-Alexa-Skill --> Rutgers Bus Tracker
+# Amazon Alexa Skills Challenge --> Rutgers Bus Tracker
 
 
 The user can ask Alexa for bus schedules from one stop to another inside Rutgers University (New Brunswick) Campus, and it returns all buses in that route ordered by their time of arrival.
